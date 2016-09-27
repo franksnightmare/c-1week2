@@ -1,0 +1,23 @@
+#include <iostream>
+#include <unistd.h>
+
+enum mode
+{
+	ERROR, OK,
+	CAPITALIZE, LOWER_CASE,
+	VERSION, USAGE
+};
+
+struct Vars
+{
+	int mode = OK;
+	std::string input;
+};
+
+void arguments(Vars &vars, int numArgs, char *param[]);
+int process(Vars const &vars);
+
+void capitalizeFile(Vars const &vars);
+void lowerCaseFile(Vars const &vars);
+void readFile(Vars &vars);
+void usage();
