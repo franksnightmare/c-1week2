@@ -1,0 +1,31 @@
+#ifndef CIPHER_H
+#define CIPHER_H
+
+#include <iostream>
+
+using namespace std;
+
+enum Action
+{
+	USAGE,
+	ENCRYPT,
+	DECRYPT
+};
+
+struct Vars
+{
+	string input;
+	string cipher;
+	int action;
+};
+
+void arguments(Vars &vars, int argc, char **argv);
+void process(Vars const &vars);
+
+void readFile(Vars &vars);
+void readCipher(Vars &vars, char **argv);
+
+char compressChar(char character);
+char decompressChar(char character);
+
+#endif

@@ -1,0 +1,169 @@
+\documentclass[a4paper]{article}
+
+\usepackage{a4wide,times}
+\usepackage[english]{babel}
+
+% -----------------------------------------------
+% especially use this for you code
+% -----------------------------------------------
+
+\usepackage{courier}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{Gray}{gray}{0.95}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{language=C++,
+	basicstyle = \small\ttfamily,   % the size and fonts that are used
+	frame = single,                 % adds a frame around the code
+	tabsize = 4,                    % sets default tabsize
+	breaklines = true,              % sets automatic line breaking
+	numbers = left,                 % where to put the line-numbers
+	numberstyle = \footnotesize,    % the style of the line-numbers
+	keywordstyle=\color{blue}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	commentstyle=\color{mygreen}\ttfamily,
+	keepspaces=true,
+	showspaces=false,
+	showstringspaces=false,
+}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\small\color{white}\ttfamily
+}
+
+\begin{document}
+
+
+\title{Programming report \\
+       Week 2 Assignments C++
+}
+\date{\today}
+\author{Jaime Betancor Valado \\
+Christiaan Steenkist \\
+Remco Bos \\
+Pepijn Sietsema
+}
+
+\maketitle
+
+\section*{Assignment 12, Big Numbers}
+We were tasked with making a function that prints unsigned long longs with separators.
+We are proud to announce the recursive \texttt{printBig} function.
+The non-recursive variant of this amazing function will be revealed at a later date (at the resubmit mayhaps).
+
+\subsection*{Code Listings}
+\lstinputlisting[caption = \tt bignum.h]{src/a12/bignum.h}
+\lstinputlisting[caption = \tt posmod.cc]{src/a12/posmod.cc}
+\lstinputlisting[caption = \tt printbig.cc]{src/a12/printbig.cc}
+\lstinputlisting[caption = \tt printsmall.cc]{src/a12/printsmall.cc}
+
+\section*{Assignment 13, Fibonacci}
+We were tasked with making an efficent as well as a horribly inefficient way of calculating Fibonacci numbers.
+The functions \texttt{fib} and \texttt{rawfib} are the two methods we implemented to give you these fascinating numbers.
+
+\subsection*{Time Tests}
+To show how absolutely primitive \texttt{rawfib} is we did a timing test where both functions were tasked with calculating the Fibonacci numbers at places 0 through 41. Here are the results of these tests with at the top the performance of our beloved \texttt{fib} function and at the bottom the noticably slower \texttt{rawfib}.
+
+\begin{itemize}
+\item \texttt{time ./main 41} gave a real of 0m0.043s
+\item \texttt{time ./main 41 x} gave a real of 1m37.808s
+\end{itemize}
+
+%\begin{itemize}
+%\item \texttt{time ./main 41} gave a real of 0m0.041s
+%\item \texttt{time ./main 41 x} gave a real of 1m48.889s
+%\end{itemize}
+
+\subsection*{Code Listings}
+\lstinputlisting[caption = \tt main.h]{src/a13o/main.h}
+\lstinputlisting[caption = \tt main.cc]{src/a13o/main.cc}
+\lstinputlisting[caption = \tt fib.cc]{src/a13o/fib.cc}
+\lstinputlisting[caption = \tt rawfib.cc]{src/a13o/rawfib.cc}
+
+%\lstinputlisting[caption = \tt main.h]{src/a13n/main.h}
+%\lstinputlisting[caption = \tt main.cc]{src/a13n/main.cc}
+%\lstinputlisting[caption = \tt fib1.cc]{src/a13n/fib1.cc}
+%\lstinputlisting[caption = \tt fib2.cc]{src/a13n/fib2.cc}
+%\lstinputlisting[caption = \tt rawfib.cc]{src/a13n/rawfib.cc}
+
+\section*{Assignment 14, Evaluator}
+We were tasked with designing a program that evaluates the design quality of a program.
+The design quality can roughly be translated to the number of comments divided by the number of lines and is said to be an indicator for the quality of source files.
+
+\subsection*{Score Calculations}
+The actual design quality is calculated by taking the ratio of two scores.
+These scores are the line scores and comment scores which are based on the number of lines and comments.
+Every line counts only once but after 30 lines they count double and at an indentation above 3 they count doubly as well.
+Every end of line comment counts but c-style comments only fully count when they are at the start of a file, otherwise they only contribute one point per block.
+
+\subsection*{Code Listings}
+\lstinputlisting[caption = \tt main.h]{src/a14/main.h}
+\lstinputlisting[caption = \tt main.cc]{src/a14/main.cc}
+\lstinputlisting[caption = \tt computequality.cc]{src/a14/computequality.cc}
+\lstinputlisting[caption = \tt computescores.cc]{src/a14/computescores.cc}
+\lstinputlisting[caption = \tt endcomment.cc]{src/a14/endcomment.cc}
+\lstinputlisting[caption = \tt endline.cc]{src/a14/endline.cc}
+\lstinputlisting[caption = \tt getinput.cc]{src/a14/getinput.cc}
+\lstinputlisting[caption = \tt printscores.cc]{src/a14/printscores.cc}
+\lstinputlisting[caption = \tt startcomment.cc]{src/a14/startcomment.cc}
+
+\section*{Assignment 15, Bit Shifts}
+We were tasked with making a program that can use three different methods to find the most significant big.
+These methods use bit shifts, taking a logarithm and truncating and binary search.
+It should also return the least significant bit.
+
+\subsection*{Time Tests}
+We did tests on big and large numbers for every method.
+The methods in order are \texttt{shiftSearch}, \texttt{truncateSearch} and \texttt{binarySearch}.
+
+\begin{itemize}
+\item Shift search: \texttt{time ./main 10 1 30000000} gave a real of 0m0.238s
+\item Truncate search: \texttt{time ./main 10 2 30000000} gave a real of 0m2.919s
+\item Binary search: \texttt{time ./main 10 3 30000000} gave a real of 0m0.859s
+\end{itemize}
+
+\begin{itemize}
+\item Shift search: \texttt{time ./main 18446744073709551615 1 30000000} gave a real of 0m4.978s
+\item Truncate search: \texttt{time ./main 18446744073709551615 2 30000000} gave a real of 0m2.904s
+\item Binary search: \texttt{time ./main 18446744073709551615 3 30000000} gave a real of 0m0.874s
+\end{itemize}
+
+\subsection*{Results}
+It seems that the first method is better for the low values and the binary is almost constant in spite of the value and is the best with large numbers. The second one is also almost constant in time in spite of the value but in low values is the slow process and in high values the binary outperforms it in matters of time.
+
+\subsection*{Code Listings}
+\lstinputlisting[caption = \tt main.h]{src/a15/main.h}
+\lstinputlisting[caption = \tt main.cc]{src/a15/main.cc}
+\lstinputlisting[caption = \tt binary.cc]{src/a15/binary.cc}
+\lstinputlisting[caption = \tt lsb.cc]{src/a15/lsb.cc}
+\lstinputlisting[caption = \tt shift.cc]{src/a15/shift.cc}
+\lstinputlisting[caption = \tt truncate.cc]{src/a15/truncate.cc}
+
+\section*{Assignment 16, Cipher}
+We were tasled with making a Vigenère cipher program.
+The idea of the program is to implement a Vigenère cipher that can translate newlines, tabs and all printable characters.
+
+\subsection*{Design}
+To encrypt and decrypt the program goes through 3 simple steps for each character.
+First the program translates the character to a compressed ascii table using the \texttt{compressChar} function.
+This makes the character inhabit a range of numbers from zero to the total number of character minus one.
+The second step is shifting the compressed character by the right amount.
+For this the apropriate character in the cipher is used after it has also been compressed.
+After the shift the now translated character is shifted back into the normal ascii table again and printed.
+
+\subsection*{Code Listings}
+\lstinputlisting[caption = \tt main.ih]{src/a16/main.ih}
+\lstinputlisting[caption = \tt main.cc]{src/a16/main.cc}
+\lstinputlisting[caption = \tt arguments.cc]{src/a16/arguments.cc}
+\lstinputlisting[caption = \tt compresschar.cc]{src/a16/compresschar.cc}
+\lstinputlisting[caption = \tt decompresschar.cc]{src/a16/decompresschar.cc}
+\lstinputlisting[caption = \tt process.cc]{src/a16/process.cc}
+
+\end{document}
