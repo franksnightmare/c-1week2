@@ -3,13 +3,14 @@
 
 #include <iostream>
 
-struct Consts{
-	const size_t baseTen = 10;
-	const size_t steps = 3;
+enum sizes{
+	BASE_THOUSAND = 1000,
+	BASE_TEN = 10,
+	SEPARATION = 3
 };
 
-size_t posMod(long long value, size_t modulus);
-void printBig(std::ostream &out, long long value);
-char printSmall(std::ostream &out, long long value);
+void printBig(std::ostream &outStream, long long value);
+void printBig(std::ostream &outStream, long long value, size_t steps);
+void splitDigits(std::ostream &outStream, long long value, size_t steps);
 
 #endif

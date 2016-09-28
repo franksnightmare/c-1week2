@@ -1,5 +1,5 @@
 DEPS = bignum.h
-OBJS = printbig.o printsmall.o posmod.o
+OBJS = printbig1.o printbig2.o splitdigits.o
 
 %.o: %.cc $(DEPS)
 	g++ -std=c++11 -Wall -c -o $@ $<
