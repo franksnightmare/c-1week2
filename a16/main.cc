@@ -2,5 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	process(arguments(argc, argv));
+	Vars vars;
+	arguments(vars, argc, argv);
+	process(vars);
 }

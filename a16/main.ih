@@ -7,7 +7,9 @@ using namespace std;
 
 enum Action
 {
-	USAGE, ENCRYPT, DECRYPT
+	USAGE,
+	ENCRYPT,
+	DECRYPT
 };
 
 struct Vars
@@ -17,9 +19,13 @@ struct Vars
 	int action;
 };
 
-Vars arguments(int argc, char **argv);
+void arguments(Vars &vars, int argc, char **argv);
+void process(Vars const &vars);
+
+void readFile(Vars &vars);
+void readCipher(Vars &vars, char **argv);
+
 char compressChar(char character);
 char decompressChar(char character);
-void process(Vars args);
 
 #endif
